@@ -3,6 +3,26 @@
 
 
 ## script for running
+### To run velveth and velvetg script
+```
+#!/bin/bash
+
+# Define input directory and output directory
+INPUT_DIR="/home/sequser/SILANTOI/miniproject/ecoli"
+OUTPUT_DIR="ASSEMBLED"
+KMER_SIZE=31
+
+# Step 1: Run velveth
+echo "Running velveth..."
+velveth $OUTPUT_DIR $KMER_SIZE -fastq.gz $INPUT_DIR/*.gz
+
+# Step 2: Run velvetg
+echo "Running velvetg..."
+velvetg $OUTPUT_DIR -scaffolding no
+
+echo "Velvet assembly completed!"
+```
+### To assemble and optimize
 ```
 #!/bin/bash
 
