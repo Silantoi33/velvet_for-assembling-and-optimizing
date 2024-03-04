@@ -75,3 +75,13 @@ velvetoptimiser -s $KMER_MIN -e $KMER_MAX -f '-fastq.gz' -i $OUTPUT_DIR_VELVET -
 
 echo "Velvet assembly and optimization completed!"
 ```
+
+### Without using a script command for assembling multiple sequences that have been splitted
+```
+velveth trials 31 -fastq.gz *_1.fastq.gz *_2.fastq.gz | velvetg - -scaffolding no
+```
+
+### Commbing velvet assembling command with velvelOptimiser
+```
+velveth trials 31 -fastq.gz *_1.fastq.gz *_2.fastq.gz | velvetg - -scaffolding no | velvetoptimiser -s 25 -e 55 -f '-fastq.gz' -i - -o optimized
+```
