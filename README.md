@@ -3,7 +3,8 @@
 
 
 ## script for running
-`#!/bin/bash
+```
+#!/bin/bash
 
 # Define input directory and output directories
 INPUT_DIR="/home/sequser/SILANTOI/miniproject/ecoli"
@@ -26,4 +27,5 @@ velvetg $OUTPUT_DIR_VELVET -scaffolding no
 echo "Running velvetoptimiser..."
 velvetoptimiser -s $KMER_MIN -e $KMER_MAX -f '-fastq.gz' -i $OUTPUT_DIR_VELVET -o $OUTPUT_DIR_OPTIMISED
 
-echo "Velvet assembly and optimization completed!"`
+echo "Velvet assembly and optimization completed!"
+```
