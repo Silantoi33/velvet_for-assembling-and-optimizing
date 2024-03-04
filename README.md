@@ -81,7 +81,7 @@ echo "Velvet assembly and optimization completed!"
 velveth trials 31 -fastq.gz *_1.fastq.gz *_2.fastq.gz | velvetg - -scaffolding no
 ```
 
-### Commbing velvet assembling command with velvelOptimiser
+### Combining velvet assembling command with velvelOptimiser
 ```
 velveth trials 31 -fastq.gz *_1.fastq.gz *_2.fastq.gz | velvetg - -scaffolding no | velvetoptimiser -s 25 -e 55 -f '-fastq.gz' -i - -o optimized
 ```
