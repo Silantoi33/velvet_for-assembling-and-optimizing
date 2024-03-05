@@ -115,3 +115,41 @@ velveth trials 31 -fastq.gz *_1.fastq.gz *_2.fastq.gz | velvetg - -scaffolding n
 ```
 velveth trials 31 -fastq.gz *_1.fastq.gz *_2.fastq.gz | velvetg - -scaffolding no | velvetoptimiser -s 25 -e 55 -f '-fastq.gz' -i - -o optimized
 ```
+# LINKS TOOL FOR SCAFFOLDINGS ASSEMBLED CONTIGS FROM VELVET
+## Use this script.
+Make sure you have the splitted fastq.gz files and contigs.fa file containing the assembled sequences from velvet.
+```
+#!/bin/bash
+
+# Iterate over all paired-end reads files ending with 1.fastq.gz
+for file in *_1.fastq.gz; do
+    # Get the base filename without the extension
+    base=$(basename "$file" _1.fastq.gz)
+    
+    # Check if the corresponding *_2.fastq.gz file exists
+    if [ -f "${base}_2.fastq.gz" ]; then
+        # Run LINKS with the paired-end reads files
+        LINKS -f contigs.fa -s "$file" -s "${base}_2.fastq.gz" -k 20 -l 100 -t 8 -a 0.5 -b "${base}_scaffolds"
+    else
+        echo "Corresponding paired-end reads file ${base}_2.fastq.gz not found."
+    fi
+done
+```
+
+#### Using the path
+```
+#!/bin/bash
+
+# Change directory to where the files are located
+cd /home/sequser/SILANTOI/mini-project/ecoli-project
+
+# Run LINKS for all paired-end reads files ending with 1.fastq.gz
+for file in *_1.fastq.gz; do
+    base=$(basename "$file" _1.fastq.gz)
+    if [ -f "${base}_2.fastq.gz" ]; then
+        LINKS -f contigs.fa -s "$file" -s "${base}_2.fastq.gz" -k 20 -l 100 -t 8 -a 0.5 -b "${base}_scaffolds"
+    else
+        echo "Corresponding paired-end reads file ${base}_2.fastq.gz not found."
+    fi
+done
+```
