@@ -176,3 +176,13 @@ for file in *_1.fastq.gz; do
     fi
 done
 ```
+
+```
+#!/bin/bash
+
+# Change directory to where the files are located
+cd /home/sequser/SILANTOI/mini-project/ecoli-project/assembled-ecoli
+
+# Run VelvetOptimiser
+VelvetOptimiser.pl -s 29 -e 31 -f '-shortPaired -fastq.gz' -o 'optimized-ecoli' --d /path/to/velvet
+```
