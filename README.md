@@ -116,6 +116,10 @@ velveth trials 31 -fastq.gz *_1.fastq.gz *_2.fastq.gz | velvetg - -scaffolding n
 velveth trials 31 -fastq.gz *_1.fastq.gz *_2.fastq.gz | velvetg - -scaffolding no | velvetoptimiser -s 25 -e 55 -f '-fastq.gz' -i - -o optimized
 ```
 # LINKS TOOL FOR SCAFFOLDINGS ASSEMBLED CONTIGS FROM VELVET
+## command
+```
+LINKS -f contigs.fa -s paired_end_reads_1.fastq -s paired_end_reads_2.fastq -k 20 -l 100 -t 8 -a 0.5 -b scaffolds
+```
 ## Use this script.
 Make sure you have the splitted fastq.gz files and contigs.fa file containing the assembled sequences from velvet.
 ```
