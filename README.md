@@ -157,3 +157,22 @@ for file in *_1.fastq.gz; do
     fi
 done
 ```
+#### echo for error messages
+```
+#!/bin/bash
+
+# Change directory to where the files are located
+cd /home/sequser/SILANTOI/mini-project/ecoli-project
+
+# Run LINKS for all paired-end reads files ending with 1.fastq.gz
+for file in *_1.fastq.gz; do
+    base=$(basename "$file" _1.fastq.gz)
+    if [ -f "${base}_2.fastq.gz" ]; then
+        echo "Running LINKS for ${file} and ${base}_2.fastq.gz..."
+        LINKS -f contigs.fa -s "$file" -s "${base}_2.fastq.gz" -k 20 -l 100 -t 8 -a 0.5 -b "${base}_scaffolds"
+        echo "LINKS completed successfully."
+    else
+        echo "ERROR: Corresponding paired-end reads file ${base}_2.fastq.gz not found."
+    fi
+done
+```
