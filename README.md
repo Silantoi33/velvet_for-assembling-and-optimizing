@@ -157,6 +157,19 @@ for file in *_1.fastq.gz; do
     fi
 done
 ```
+
+#### Using Spades to optimize velvet assembled file
+```
+#!/bin/bash
+
+# Define variables
+CONTOIGS_FILE="/home/SILANTOI/mini-project/ecoli-project/ASSEMBLED/contigs.fa"
+OUTPUT_DIR="/home/SILANTOI/mini-project/ecoli-project/ASSEMBLED/spades_output"
+
+# Run SPAdes
+spades.py -s "$CONTOIGS_FILE" -o "$OUTPUT_DIR"
+```
+
 #### echo for error messages
 ```
 #!/bin/bash
