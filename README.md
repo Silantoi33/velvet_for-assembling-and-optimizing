@@ -116,7 +116,7 @@ velveth trials 31 -fastq.gz *_1.fastq.gz *_2.fastq.gz | velvetg - -scaffolding n
 velveth trials 31 -fastq.gz *_1.fastq.gz *_2.fastq.gz | velvetg - -scaffolding no | velvetoptimiser -s 25 -e 55 -f '-fastq.gz' -i - -o optimized
 ```
 
-##Using spades and Links. 
+## Using spades and Links. 
 spades for assembling and links for scaffolding
 ```
 #!/bin/bash
