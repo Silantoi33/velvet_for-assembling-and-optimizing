@@ -115,6 +115,35 @@ velveth trials 31 -fastq.gz *_1.fastq.gz *_2.fastq.gz | velvetg - -scaffolding n
 ```
 velveth trials 31 -fastq.gz *_1.fastq.gz *_2.fastq.gz | velvetg - -scaffolding no | velvetoptimiser -s 25 -e 55 -f '-fastq.gz' -i - -o optimized
 ```
+
+##Using spades and Links. 
+spades for assembling and links for scaffolding
+```
+#!/bin/bash
+
+# Define paths
+READS_DIR="/home/sequser/SILANTOI/miniproject/ecoli-project"
+SPAdes_OUTPUT="$READS_DIR/spades_output"
+LINKS_OUTPUT="$READS_DIR/links_output"
+
+# Activate SPAdes environment
+source activate spades_env
+
+# Run SPAdes assembly
+spades.py -1 "$READS_DIR/reads_R1.fastq.gz" -2 "$READS_DIR/reads_R2.fastq.gz" -o "$SPAdes_OUTPUT"
+
+# Deactivate SPAdes environment
+conda deactivate
+
+# Activate LINKS environment
+source activate links_env
+
+# Run LINKS for scaffolding
+LINKS -f "$SPAdes_OUTPUT/scaffolds.fasta" -s "$READS_DIR/reads_R1.fastq.gz" -s "$READS_DIR/reads_R2.fastq.gz" -k 20 -l 500 -t 8 -x 0.1 -a 0.5 -b "$LINKS_OUTPUT"
+
+# Deactivate LINKS environment
+conda deactivate
+```
 # LINKS TOOL FOR SCAFFOLDINGS ASSEMBLED CONTIGS FROM VELVET
 ## command
 ```
