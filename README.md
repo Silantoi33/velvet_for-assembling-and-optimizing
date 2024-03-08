@@ -123,6 +123,26 @@ find /home/sequser/SILANTOI/miniproject/ecoli-project -name "*_pass_1.fastq.gz" 
 find /home/sequser/SILANTOI/miniproject/ecoli-project -name "*_pass_2.fastq.gz" > reverse_reads.txt
 spades.py --pe1-1 forward_reads.txt --pe1-2 reverse_reads.txt -o output_directory --isolate
 ```
+##### script
+```
+#!/bin/bash
+
+# Define the directory containing the split FASTQ files
+input_directory="/home/sequser/SILANTOI/miniproject/ecoli-project"
+
+# Define the output directory for Spades results
+output_directory="output_directory"
+
+# Find forward and reverse reads and save them to text files
+find "$input_directory" -name "*_pass_1.fastq.gz" > forward_reads.txt
+find "$input_directory" -name "*_pass_2.fastq.gz" > reverse_reads.txt
+
+# Run Spades assembly
+spades.py --pe1-1 forward_reads.txt --pe1-2 reverse_reads.txt -o "$output_directory" --isolate
+
+# Cleanup: remove intermediate files
+rm forward_reads.txt reverse_reads.txt
+```
 
 ## Using spades and Links. 
 spades for assembling and links for scaffolding
