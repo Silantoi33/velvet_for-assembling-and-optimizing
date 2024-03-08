@@ -116,6 +116,14 @@ velveth trials 31 -fastq.gz *_1.fastq.gz *_2.fastq.gz | velvetg - -scaffolding n
 velveth trials 31 -fastq.gz *_1.fastq.gz *_2.fastq.gz | velvetg - -scaffolding no | velvetoptimiser -s 25 -e 55 -f '-fastq.gz' -i - -o optimized
 ```
 
+## Spades for assembling multiple files 
+```
+
+find /home/sequser/SILANTOI/miniproject/ecoli-project -name "*_pass_1.fastq.gz" > forward_reads.txt
+find /home/sequser/SILANTOI/miniproject/ecoli-project -name "*_pass_2.fastq.gz" > reverse_reads.txt
+spades.py --pe1-1 forward_reads.txt --pe1-2 reverse_reads.txt -o output_directory --isolate
+```
+
 ## Using spades and Links. 
 spades for assembling and links for scaffolding
 ```
