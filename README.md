@@ -283,3 +283,33 @@ cd /home/sequser/SILANTOI/mini-project/ecoli-project/assembled-ecoli
 # Run VelvetOptimiser
 VelvetOptimiser.pl -s 29 -e 31 -f '-shortPaired -fastq.gz' -o 'optimized-ecoli' --d /path/to/velvet
 ```
+
+```
+rom Bio import SeqIO
+
+def extract_gene_sequences(fasta_file, gene_data, output_file):
+    with open(output_file, 'w') as outfile:
+        for record in SeqIO.parse(fasta_file, 'fasta'):
+            for line in gene_data:
+                gene_info = line.strip().split(',')
+                gene_name = gene_info[5]
+                if gene_name in record.id:
+                    SeqIO.write(record, outfile, 'fasta')
+                    break
+
+# Input filenames
+fasta_file = 'ecloacae.fasta'
+output_file = 'resfinder_genes.fasta'
+
+# Gene data from ResFinder output
+gene_data = [
+    "ecloacae.fasta,1,446029,447174,-,blaCMH-3_1,1-1146/1146,===============,0/0,100.00,98.69,resfinder,KX192165,blaCMH-3,",
+    "ecloacae.fasta,1,596845,597270,+,fosA_7,1-426/426,===============,0/0,100.00,95.78,resfinder,AEXB01000013,fosA,Fosfomycin",
+    "ecloacae.fasta,1,2262697,2265816,-,OqxB_1,1-3120/3153,===============,0/0,98.95,88.43,resfinder,EU370913,OqxB,Chloramphenicol;Ciprofloxacin;Nalidixic_acid;Trimethoprim",
+    "ecloacae.fasta,1,2265840,2267015,-,OqxA_1,1-1176/1176,===============,0/0,100.00,86.48,resfinder,EU370913,OqxA,Chloramphenicol;Ciprofloxacin;Nalidixic_acid;Trimethoprim",
+    "ecloacae.fasta,3,49283,50902,-,mcr-10_1,1-1620/1620,===============,0/0,100.00,100.00,resfinder,MN179494,mcr-10,Colistin"
+]
+
+# Extract gene sequences
+extract_gene_sequences(fasta_file, gene_data, output_file)
+```
